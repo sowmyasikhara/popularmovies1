@@ -9,34 +9,28 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MovieDetailView extends AppCompatActivity {
 
-
-
-    TextView titlename;
-    TextView release_date_movie;
-    TextView vote_average_movie;
-    TextView overview_movie;
-    ImageView poster_movie;
-    String path="https://image.tmdb.org/t/p/w500";
-
-
-
+    private static TextView title_name;
+    private static TextView release_date_movie;
+    private static TextView vote_average_movie;
+    private static TextView overview_movie;
+    private static ImageView poster_movie;
+    private static String path="https://image.tmdb.org/t/p/w500";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail_view);
 
-
-
-
-        titlename = (TextView)findViewById(R.id.titlename);
-        release_date_movie = (TextView)findViewById(R.id.release_date);
-        vote_average_movie = (TextView)findViewById(R.id.vote_average);
-        overview_movie = (TextView)findViewById(R.id.overview);
+        title_name = (TextView)findViewById(R.id.titleNameId);
+        release_date_movie = (TextView)findViewById(R.id.releaseDateId);
+        vote_average_movie = (TextView)findViewById(R.id.voteAverageId);
+        overview_movie = (TextView)findViewById(R.id.plotSynopsisId);
         poster_movie = (ImageView)findViewById(R.id.imageViewId);
 
 
@@ -44,11 +38,8 @@ public class MovieDetailView extends AppCompatActivity {
         Intent i = getIntent();
         Log.d("intent CALLED","in moviedetail");
 
-        // Selected image id
-       // int position = i.getExtras().getInt("id");
-
         String title = i.getExtras().getString("name");
-        titlename.setText(title);
+        title_name.setText(title);
 
         String release_date = i.getExtras().getString("release_date");
         release_date_movie.setText(release_date);
@@ -62,26 +53,11 @@ public class MovieDetailView extends AppCompatActivity {
         String poster =  i.getExtras().getString("poster_path");
         poster = path+poster;
 
-        Picasso.get().load(poster).into(poster_movie);
-
-
-
-
-
-
-
-
-
-
-
-
+        Picasso.get()
+                .load(poster)
+                .error(R.drawable.picture_unavailable)
+                .placeholder(R.drawable.loading_icon1)
+                .into(poster_movie);
 
     }
-
-
-
-
-
-
-
 }

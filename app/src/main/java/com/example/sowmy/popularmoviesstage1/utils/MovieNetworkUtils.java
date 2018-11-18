@@ -14,38 +14,37 @@ import java.util.Scanner;
 
 public class MovieNetworkUtils {
         final static String MOVIEDB_URL =
-                // "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc";
                 "https://api.themoviedb.org/3/discover/movie?";
-        final static String PARAM_QUERY = "q";
-
         /*
-         * The sort field. One of stars, forks, or updated.
          * Default: results are sorted by best match if no field is specified.
          */
         final static String PARAM_SORT = "sort_by";
         final static String API_KEY = "06a566cf4b59a36e14f0e4ab07ab8f85";
         final static String PARAM_API_KEY = "api_key";
+        static String PARAM_SORT_VALUE = "primary_release_year=2018";
+        final static String LOG_TAG="MovieNetworkUtils";
 
-        final static String PARAM_SORT_KEY_VALUE="popularity.desc";
         /**
          * Builds the URL used to query movie database.
          *
 
          * @return The URL to use to query the movie db server.
          */
-        public static URL buildUrl(){
+        public static URL buildUrl(String Sort_preference){
 
           //getting movie details from TMDB
 
+            PARAM_SORT_VALUE = Sort_preference;
             Uri builtUri = Uri.parse(MOVIEDB_URL).buildUpon()
-                    .appendQueryParameter(PARAM_SORT,PARAM_SORT_KEY_VALUE)
+                    .appendQueryParameter(PARAM_SORT,PARAM_SORT_VALUE)
                     .appendQueryParameter(PARAM_API_KEY,API_KEY)
                     .build();
 
             URL url = null;
             try {
                 url = new URL(builtUri.toString());
-                Log.d("url connected",url.toString());
+
+                Log.d(LOG_TAG,url.toString());
 
 
             } catch (MalformedURLException e) {

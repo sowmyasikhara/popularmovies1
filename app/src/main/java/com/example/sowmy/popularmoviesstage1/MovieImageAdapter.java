@@ -2,12 +2,11 @@ package com.example.sowmy.popularmoviesstage1;
 
 
 import android.content.Context;
-import android.content.Intent;
+
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -23,24 +22,18 @@ public class MovieImageAdapter extends BaseAdapter  {
     List<Movie> poster_images;
     String path="https://image.tmdb.org/t/p/w500";
     private String poster;
-    String[] movie_images;
-
-
-
-
-
+    private String[] movie_images;
+    final static String LOG_TAG ="MovieImageAdapter";
 
     // Constructor
     public MovieImageAdapter(Context c,ArrayList<Movie> poster_paths) {
-        Log.d("constructor called","adapter");
+        Log.d(LOG_TAG,"Constructor called");
 
 
         mContext = c;
         poster_images = poster_paths;
 
         movie_images = new String[poster_images.size()];
-
-        //poster_images = new ArrayList<Movie>();
 
         for (int i = 0; i < poster_images.size(); i++) {
             poster = poster_images.get(i).getMovie_poster();
@@ -54,13 +47,13 @@ public class MovieImageAdapter extends BaseAdapter  {
 
     public int getCount()
     {
-        Log.d("poster images inadapter",String.valueOf(poster_images.size()));
+        Log.d(LOG_TAG,String.valueOf(poster_images.size()));
         return poster_images.size();
     }
 
     public Object getItem(int position)
     {
-        Log.d("items position",String.valueOf(position));
+        Log.d(LOG_TAG,String.valueOf(position));
         return position;
     }
 
@@ -76,7 +69,7 @@ public class MovieImageAdapter extends BaseAdapter  {
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(500, 500));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8, 8, 8, 8);
+
         }
         else
         {
@@ -85,13 +78,12 @@ public class MovieImageAdapter extends BaseAdapter  {
         }
 
             Picasso.get()
+
                     .load(movie_images[position])
+                    .error(R.drawable.picture_unavailable)
+                    .placeholder(R.drawable.loading_icon1)
                     .into(imageView);
 
-
-
-        //Picasso.get().load(poster_images.get(position).getMovie_poster()).into(imageView);
-        //imageView.setImageResource(Integer.parseInt(poster_images.get(position)));
         return imageView;
     }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<android.widget.RelativeLayout
 
 
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,56 +12,102 @@
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/imageViewId"
         android:gravity="left"
+        android:layout_margin="8dp"
         android:layout_height="200dp"
         android:layout_width="200dp"
         />
 
-    <TextView
-        android:id="@+id/titlename"
-
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/titleNameId"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentLeft = "true"
+        android:layout_margin="22dp"
+        android:layout_marginLeft="16dp"
+        android:paddingTop="16dp"
         android:layout_below="@id/imageViewId"
         android:textSize="20sp"
         android:layout_gravity="left"
         android:textColor="#FFAB44A4"
+        />
 
+        <TextView
+
+
+            android:id="@+id/label_movie_title_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="8dp"
+            android:layout_margin="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_below="@id/imageViewId"
+            android:text="@string/movie_title"
+
+            />
+
+    <TextView
+
+        android:id="@+id/label_release_date_id"
+        android:layout_toRightOf="@id/imageViewId"
+        android:layout_marginTop = "16dp"
+        android:paddingRight="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/release_date"
+
+        />
+
+
+    <TextView
+        android:id="@+id/label_vote_average_id"
+        android:layout_toRightOf="@id/imageViewId"
+        android:layout_margin = "50dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/vote_avg"
+        />
+
+    <TextView
+        android:id="@+id/label_overview_id"
+        android:layout_gravity="left"
+        android:layout_marginLeft="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/plot_synopsis"
+        android:layout_toLeftOf="@id/plotSynopsisId" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/releaseDateId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:paddingBottom="8dp"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:layout_toRightOf="@id/imageViewId" />
+
+    <android.widget.TextView
+        android:id="@+id/voteAverageId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="50dp"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:layout_toRightOf="@id/imageViewId"
 
         />
 
     <TextView
-
-        android:id="@+id/release_date"
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:textSize="18sp"
-
-
-    />
-
-    <TextView
-
-        android:id="@+id/vote_average"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="18sp"
-
-
-        />
-    <TextView
-
-        android:id="@+id/overview"
+        android:id="@+id/plotSynopsisId"
         android:gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="18sp"
-        android:layout_alignParentRight="true"
+        android:textSize="16sp"
         />
 
 
-</RelativeLayout>
+</android.widget.RelativeLayout>
 
 
 
