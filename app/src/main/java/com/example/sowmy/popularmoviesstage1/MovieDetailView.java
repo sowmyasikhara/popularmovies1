@@ -9,10 +9,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
+@SuppressWarnings("RedundantCast")
 public class MovieDetailView extends AppCompatActivity {
 
     private static TextView title_name;
@@ -36,7 +33,7 @@ public class MovieDetailView extends AppCompatActivity {
 
         // Get intent data
         Intent i = getIntent();
-        Log.d("intent CALLED","in moviedetail");
+
 
         String title = i.getExtras().getString("name");
         title_name.setText(title);

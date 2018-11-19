@@ -27,6 +27,7 @@ public class ParseMovieJSONDetails {
             JSONObject movieJSON = new JSONObject(movieDbresponse);
             JSONArray resultsJSON;
 
+            //noinspection Convert2Diamond
             allMoviesList = new ArrayList<Movie>();
 
             resultsJSON = movieJSON.getJSONArray("results");

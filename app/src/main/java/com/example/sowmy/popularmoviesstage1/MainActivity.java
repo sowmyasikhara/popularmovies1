@@ -13,12 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.sowmy.popularmoviesstage1.model.Movie;
 import com.example.sowmy.popularmoviesstage1.utils.MovieNetworkUtils;
@@ -27,7 +24,6 @@ import com.example.sowmy.popularmoviesstage1.utils.ParseMovieJSONDetails;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -98,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             getMovieDetails(sortByValue);
             super.onStart();
         }else{
-            Toast.makeText(context,"Oops,No Internet!Please check Intenet Connection",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"Oops,No Internet!Please check Internet Connection",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -112,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(context,"Oops,No Internet!Please check Intenet Connection",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"Oops,No Internet!Please check Internet Connection",Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -160,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 v = layout.inflate(R.layout.activity_movie_detail_view, null, false);
                 Intent i = new Intent(MainActivity.this, MovieDetailView.class);
 
-                // Pass image inde
+                // Pass image index
 
                 String title = allMoviesList.get(position).getTitle();
                 i.putExtra("name", title);
@@ -189,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        String textToShow = "Oops..!No Internet,Please check network connection";
         return (activeNetworkInfo != null && activeNetworkInfo.isConnected());
     }
 }
