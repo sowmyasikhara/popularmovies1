@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         if (itemThatWasClickedId == R.id.popular_movie) {
             sortByValue = String.valueOf(R.string.sort_by_popularity);
             Log.d(LOG_TAG, sortByValue);
+
             String textToShow = "showing popular movies";
             Toast.makeText(context, textToShow, Toast.LENGTH_LONG).show();
             getMovieDetails(sortByValue);
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent,
                                     View v, int position, long id) {
-                // Send intent to SingleViewActivity
+                // Send intent to MovieViewActivity
 
                 LayoutInflater layout = getLayoutInflater();
                 v = layout.inflate(R.layout.activity_movie_detail_view, null, false);
