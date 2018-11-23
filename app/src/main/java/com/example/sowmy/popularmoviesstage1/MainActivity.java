@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Movie> allMoviesList;
     private static String response1;
     private String sortByValue;
+    public String sortByPref;
     final static String LOG_TAG ="MainActivity";
 
     @Override
@@ -61,23 +62,28 @@ public class MainActivity extends AppCompatActivity {
         int itemThatWasClickedId = item.getItemId();
 
         if (itemThatWasClickedId == R.id.popular_movie) {
-            sortByValue = String.valueOf(R.string.sort_by_popularity);
+            sortByPref=getString(R.string.popular);
+            //sortByValue = String.valueOf(R.string.sort_by_popularity);
+            sortByValue=getString(R.string.sort_by_popularity);
             Log.d(LOG_TAG, sortByValue);
 
             String textToShow = "showing popular movies";
             Toast.makeText(context, textToShow, Toast.LENGTH_LONG).show();
-            getMovieDetails(sortByValue);
+            getMovieDetails(sortByValue,sortByPref);
 
         } else {
             if (itemThatWasClickedId == R.id.top_rated) {
+
+                sortByPref=getString(R.string.top_rated);
                 sortByValue = String.valueOf(R.string.sort_by_topRated);
                 Log.d(LOG_TAG, sortByValue);
                 String textToShow = "showing top rated movies";
                 Toast.makeText(context, textToShow, Toast.LENGTH_LONG).show();
-                getMovieDetails(sortByValue);
+                getMovieDetails(sortByValue,sortByPref);
             }
             return true;
         }
+
 
         return super.onOptionsItemSelected(item);
 
@@ -87,23 +93,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
 
+        //default loading popular movies
+        sortByPref = getString(R.string.popular);
+
         //checking if internet connection is available or not
         if(isNetworkAvailable()) {
-
             //getting list of movie details
-            getMovieDetails(sortByValue);
-            super.onStart();
+            getMovieDetails(sortByValue,sortByPref);
+
         }else{
             Toast.makeText(context,"Oops,No Internet!Please check Internet Connection",Toast.LENGTH_SHORT).show();
         }
+        super.onStart();
     }
 
-    private void getMovieDetails(String sortByValue) {
+    private void getMovieDetails(String sortByValue,String sortByPref) {
 
         //checking if internet connection is available or not
         if(isNetworkAvailable()) {
             String sortBy = sortByValue;
-            URL movieDBSearchURL = MovieNetworkUtils.buildUrl(sortBy);
+            URL movieDBSearchURL = MovieNetworkUtils.buildUrl(sortBy,sortByPref);
             new MoviesAsyncTask().execute(movieDBSearchURL);
         }
         else

@@ -2,6 +2,8 @@
     <string name="app_name">PopularMoviesStage1</string>
     <string name="sort_by_popularity">popularity.desc</string>
     <string name="sort_by_topRated">vote_average.desc</string>
+    <string name="popular">https://api.themoviedb.org/3/movie/popular</string>
+    <string name="top_rated">https://api.themoviedb.org/3/movie/top_rated</string>
 
     <string name="movie_title">MovieTitle</string>
     <string name="release_date">Release-Date</string>

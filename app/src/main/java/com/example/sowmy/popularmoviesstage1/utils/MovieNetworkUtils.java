@@ -12,9 +12,11 @@ import java.net.URL;
 import java.io.InputStream;
 import java.util.Scanner;
 
-public class MovieNetworkUtils {
-        final static String MOVIEDB_URL =
-                "https://api.themoviedb.org/3/discover/movie?";
+public final class MovieNetworkUtils {
+        static String MOVIEDB_URL =
+               // "https://api.themoviedb.org/3/discover/movie?";
+
+        "https://api.themoviedb.org/3/movie/";
         /*
          * Default: results are sorted by best match if no field is specified.
          */
@@ -30,11 +32,15 @@ public class MovieNetworkUtils {
 
          * @return The URL to use to query the movie db server.
          */
-        public static URL buildUrl(String Sort_preference){
+        public static URL buildUrl(String Sort_preference,String sort_pref_value){
 
           //getting movie details from TMDB
 
             PARAM_SORT_VALUE = Sort_preference;
+
+            MOVIEDB_URL = sort_pref_value;
+            Log.d("finalmoviedburl",MOVIEDB_URL);
+
             Uri builtUri = Uri.parse(MOVIEDB_URL).buildUpon()
                     .appendQueryParameter(PARAM_SORT,PARAM_SORT_VALUE)
                     .appendQueryParameter(PARAM_API_KEY,API_KEY)
